@@ -6,12 +6,18 @@
         Все игры
     </h2>
     <h3>@Model.currCategory</h3>
-    @{ 
-        foreach (var game in Model.allGames)
-        {
-            <div>
-                <h2>Модель: @game.Name</h2>
-                <p>@game.Price.ToString("c")</p>
-            </div>
+    <div class="row mt-5 mb-2">
+        <  @{
+            foreach (var game in Model.allGames)
+            {
+                <div class="col-lg-4">
+                    <img class="img-thumbnail" src="@game.Img" alt="@game.Name" width="200" height="200" />
+                    <h2> @game.Name</h2>
+                    <p>@game.ShortDesc</p>
+                    <p>Цена: @game.Price.ToString("c")</p>
+                    <p> <a class="btn btn-warning" href="#">Подробнее</a>
+                    </p>
+                </div>
+            }
         }
-    }
+        </div>

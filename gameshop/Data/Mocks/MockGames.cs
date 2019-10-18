@@ -19,7 +19,7 @@ namespace gameshop.Data.Mocks
                     new Game {Name = "GTA V",
                         ShortDesc = "Open world game",
                         LongDesc = "Rockstar open world game",
-                        Img = "" ,
+                        Img = "/img/picture.jpg" ,
                         Price = 2000,
                         IsFavourite = true,
                         Avalible = true ,
