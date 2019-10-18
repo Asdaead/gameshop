@@ -1,0 +1,17 @@
+﻿@using gameshop.ViewModels
+@model GamesListViewModel
+
+
+    <h2>
+        Все игры
+    </h2>
+    <h3>@Model.currCategory</h3>
+    @{ 
+        foreach (var game in Model.allGames)
+        {
+            <div>
+                <h2>Модель: @game.Name</h2>
+                <p>@game.Price.ToString("c")</p>
+            </div>
+        }
+    }

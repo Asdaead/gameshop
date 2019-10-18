@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace gameshop.Data.Interfaces
 {
-    interface IAllGames
+   public interface IAllGames
     {
         IEnumerable<Game> Games { get; }
         IEnumerable<Game> getFavGames { get; set; }
