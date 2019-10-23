@@ -1,4 +1,5 @@
 ﻿using gameshop.Data.Interfaces;
+using gameshop.Data.Models;
 using gameshop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,14 +20,32 @@ namespace gameshop.Controllers
             _allCategories = iGamesCat;
         }
 
-        public ViewResult List()
+        [Route("Games/List")]
+        [Route("Games/List/{category}")]
+        public ViewResult List(string category)
         {
-            ViewBag.Title = "Страница с играми";
-            GamesListViewModel obj = new GamesListViewModel();
-            obj.allGames = _allGames.Games;
-            obj.currCategory = "Игры";
+            string _category = category;
+            IEnumerable<Game> games = null;
+            string currCategory = "";
+            if (string.IsNullOrEmpty(category))
+                games = _allGames.Games.OrderBy(i => i.ID);
+             else
+                if (string.Equals("RPG", category, StringComparison.OrdinalIgnoreCase)) 
+                games = _allGames.Games.Where(i => i.Category.CategoryName.Equals("RPG")).OrderBy(i => i.ID);
+            else
+                games = _allGames.Games.Where(i => i.Category.CategoryName.Equals("Action")).OrderBy(i => i.ID);
 
-            return View(obj);
+            currCategory = _category;
+
+            var gameObj = new GamesListViewModel
+            {
+                allGames = games,
+                currCategory = currCategory
+            };
+
+            ViewBag.Title = "Страница с играми";
+   
+            return View(gameObj);
         }
     }
 }
