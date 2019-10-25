@@ -35,12 +35,14 @@ namespace gameshop.Controllers
 
         public RedirectToActionResult addToCart(int id)
         {
-            var item = _gameRep.Games.FirstOrDefault(i => i.ID == id);
+            Game item = _gameRep.Games.FirstOrDefault(i => i.ID == id);
 
             if (item != null)
+            {
                 _shopCart.AddToCart(item);
+            }
             
-            return RedirectToAction("index");
+            return RedirectToAction("Index");
         }
     }
 }

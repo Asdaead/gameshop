@@ -25,7 +25,7 @@ namespace gameshop.Data.Models
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
             var context = services.GetService<AppDBContent>();
-            string shopCartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+            string shopCartId = session.GetString("CartID") ?? Guid.NewGuid().ToString();
            
             session.SetString("CartID", shopCartId);
 

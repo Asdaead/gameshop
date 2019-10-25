@@ -34,6 +34,8 @@ namespace gameshop
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confstring.GetConnectionString("DefaultConnection")));
             services.AddTransient<IAllGames, GameRepository>();
             services.AddTransient<IGamesCategory, CategoryRepository>();
+            services.AddTransient<IAllOrders, OrdersRepository>();
+
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => ShopCart.GetCart(sp));
