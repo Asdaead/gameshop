@@ -1,0 +1,16 @@
+﻿@using gameshop.ViewModels
+@model SearchViewModel
+
+
+<h2>
+    Результаты поиска
+</h2>
+<h3>@Model.SearchString</h3>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Game game in Model.allGames)
+        {
+            @Html.Partial("AllGames", game);
+        }
+    }
+</div>

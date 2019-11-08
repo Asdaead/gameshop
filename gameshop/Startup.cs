@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using gameshop.Data;
 using gameshop.Data.Interfaces;
-using gameshop.Data.Mocks;
 using gameshop.Data.Models;
 using gameshop.Data.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -64,7 +63,7 @@ namespace gameshop
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
-                DBObjects.Initial(content);
+             
             }
             
         }

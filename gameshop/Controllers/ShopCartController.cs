@@ -40,8 +40,9 @@ namespace gameshop.Controllers
             if (item != null)
             {
                 _shopCart.AddToCart(item);
+             
             }
-            
+
             return RedirectToAction("Index");
         }
     }

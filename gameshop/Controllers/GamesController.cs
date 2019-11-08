@@ -47,5 +47,23 @@ namespace gameshop.Controllers
    
             return View(gameObj);
         }
+
+        public ViewResult Search (string id)
+        {
+            IEnumerable<Game> games = null;
+            if (string.IsNullOrEmpty(id))
+                games = _allGames.Games.OrderBy(i => i.ID);
+            else
+                games = _allGames.Games.Where(i => i.Name.Contains(id));
+           
+            var gameObj = new SearchViewModel
+            {
+                allGames = games,
+                SearchString = id
+            };
+
+            return View(gameObj);
+
+        }
     }
 }
