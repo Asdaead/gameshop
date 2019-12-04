@@ -35,7 +35,6 @@ namespace gameshop
             services.AddTransient<IGamesCategory, CategoryRepository>();
             services.AddTransient<IAllOrders, OrdersRepository>();
 
-
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => ShopCart.GetCart(sp));
 
@@ -56,16 +55,14 @@ namespace gameshop
             {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(name: "categoryfilter", template: "Game/{action}/{category?}", defaults: new { Controller = "Game", action = "List" });
-           });
- 
+                //routes.MapRoute(name: "details", template: "Game/{id?}", defaults: new { Controller = "Game"});
+            });
 
-         
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
              
-            }
-            
+            }    
         }
     }
 }

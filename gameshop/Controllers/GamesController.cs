@@ -31,9 +31,13 @@ namespace gameshop.Controllers
                 games = _allGames.Games.OrderBy(i => i.ID);
              else
                 if (string.Equals("RPG", category, StringComparison.OrdinalIgnoreCase)) 
-                games = _allGames.Games.Where(i => i.Category.CategoryName.Equals("RPG")).OrderBy(i => i.ID);
+                games = _allGames.Games
+                    .Where(i => i.Category.CategoryName.Equals("RPG"))
+                    .OrderBy(i => i.ID); 
             else
-                games = _allGames.Games.Where(i => i.Category.CategoryName.Equals("Action")).OrderBy(i => i.ID);
+                games = _allGames.Games
+                    .Where(i => i.Category.CategoryName.Equals("Action"))
+                    .OrderBy(i => i.ID);
 
             currCategory = _category;
 
@@ -54,7 +58,7 @@ namespace gameshop.Controllers
             if (string.IsNullOrEmpty(id))
                 games = _allGames.Games.OrderBy(i => i.ID);
             else
-                games = _allGames.Games.Where(i => i.Name.Contains(id));
+                games = _allGames.Games.Where(i => i.Name.StartsWith(id));
            
             var gameObj = new SearchViewModel
             {
@@ -63,7 +67,27 @@ namespace gameshop.Controllers
             };
 
             return View(gameObj);
+        }
 
+       // [Route("Games/{id}")]
+        public ViewResult Details(int id)
+        {
+            if (id != 0)
+            {
+                Game game = new Game();
+
+                game = _allGames.Games.First(i => i.ID == id);
+
+                var gameObj = new DetailsViewModel
+                {
+                    Game = game,
+                    ID = id
+                };
+
+                return View(gameObj);
+            }
+            else return View(null);
+            }
         }
     }
-}
+
